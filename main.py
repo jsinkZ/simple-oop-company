@@ -1,17 +1,20 @@
 class Person:
-    def __init__(self, name, age, experience, working_now, req_salary):
+    def __init__(self, name, age, experience, req_salary):
         self.name = name
         self.age = age
         self.experience = experience  # experience in years
-        self.req_salary = req.salary  # requested salary in dollars
+        self.req_salary = req_salary  # requested salary in dollars
 
     def say_hi(self):
         print(
             "Hi! Im",
             self.name,
             self.age,
-            "yo, my experience, I request a salary of",
+            "yo, my experience",
+            self.experience,
+            "years, I request a salary of",
             self.req_salary,
+            "$",
         )
 
 
@@ -29,7 +32,7 @@ class Worker(Person):
         print(
             "Im work in",
             self.working_now,
-            "My position",
+            "my position",
             self.position,
             "and current salary",
             self.current_salary,
@@ -61,15 +64,15 @@ class Company:
 
     # print all information about company
     def about_company(self):
-        print("Company name: ", self.name)
-        print("Company description: ", self.description)
-        print("Company max count staff : ", self.max_staff)
+        print("Company name:", self.name)
+        print("Company description:", self.description)
+        print("Company max count staff: ", self.max_staff)
         print(
-            "Company salary for \n\tjunior: ",
+            "Company salary for \n\tjunior:",
             self.salary[0],
-            "\n\tmiddle: ",
+            "\n\tmiddle:",
             self.salary[1],
-            "\n\tsenior: ",
+            "\n\tsenior:",
             self.salary[2],
         )
 
@@ -96,7 +99,12 @@ class Company - company -> (name, description, max_staff, salary, work_group)
 """
 
 # * companies
-some_ceo = Company("Some comp", "...", 30, [1000, 3000, 4500], [])
+VVS_company = Company(
+    "VVS company", "Best solve for your business", 30, [1000, 3000, 4500], []
+)
+Diamonds_crime_company = Company(
+    "Diamonds crime", "Design UI", 12, [800, 2200, 3700], []
+)
 
 # * people
 dan = Person("Dan", 25, 0, 1200)
@@ -106,18 +114,19 @@ john = Person("John", 27, 3, 1200)
 wilson = Person("Wilson", 39, 17, 6600)
 
 # * workers
-jack = Worker("Jack", 29, 7, 3200, some_ceo, "middle", 3700)
-alex = Worker("Alex", 32, 10, 5000, some_ceo, "senior", 6000)
+bruce = Worker("Bruce", 29, 7, 1800, Diamonds_crime_company, "junior", 1200)
+jack = Worker("Jack", 29, 7, 3900, Diamonds_crime_company, "middle", 3700)
+alex = Worker("Alex", 32, 10, 6400, Diamonds_crime_company, "senior", 6000)
 
 # * testing
 
 # john.say_hi()
 # jack.say_hi()
+wilson.say_hi()
+alex.say_hi()
 
-# some_ceo.employ(jack.name)
-# some_ceo.employ(john.name)
-# some_ceo.employ(ben.name)
-# some_ceo.fire(john.name)
+VVS_company.about_company()
+Diamonds_crime_company.about_company()
 
-some_ceo.contest([jack, john, ben, wilson, jacob], 3)
-some_ceo.current_group()
+# some_ceo.contest([jack, john, ben, wilson, jacob], 3)
+# some_ceo.current_group()
